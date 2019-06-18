@@ -1,0 +1,39 @@
+﻿<!DOCTYPE html>
+<html ng-app = "flightSearch">
+<head>
+    <title>Flight Search</title>
+    <script src="https://ajax.googleapis.com/ajax/libs/angularjs/1.0.7/angular.min.js"></script>
+    <link rel="stylesheet" type="text/css" href="style.css">
+    <script src="flightscript.js" ></script>
+</head>
+<body>
+    <div id="content" ng-controller="MainCtrl">
+        Flight Number : <input type='text' ng-model='fNumber' placeholder="Flight Number" /><br>
+        Origin : <input type='text' ng-model='origin' placeholder="Origin" /><br>
+        Destination : <input type='text' ng-model='destination' placeholder="Destination" /><br>
+Date : <input type='text' ng-model='date' placeholder="YYYY-MM-DD" /><br>
+        <button class="search" ng-click="getSearchResult(fNumber, origin, destination, date)">search</button>
+<span class ="amber" ng-show="fNumberError">
+             Please Enter Either Flight Number or Origin and Destination!!!
+         <br></span>
+<span class ="amber" ng-show="dateError">
+             Please Enter Date!!!
+         <br></span>
+         <br><br><br>
+         <div ng-if="availableFlights.length > 0" ng-repeat="flight in availableFlights">
+          Flight Number : {{flight.flightNumber}}<br>
+          Carrier       : {{flight.carrier}}<br>
+          Origin        : {{flight.origin}}<br>
+          Departure     : {{flight.departure}}<br> 
+          Destination   : {{flight.destination}}<br>           
+          Arrival       : {{flight.arrival}}<br>           
+          Aircraft      : {{flight.aircraft}}<br>           
+          distance      : {{flight.distance}}<br>
+          Travel Time   : {{flight.travelTime}}<br>           
+          Status        : {{flight.status}}<br>
+          <hr>
+          <br>
+          </div>
+    </div>
+</body>
+</html>
